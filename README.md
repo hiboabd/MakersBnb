@@ -14,7 +14,7 @@ This will run Rspec, with SimpleCov, followed by RuboCop.
 To test in browser, run script:  
 `./test/web.test`
 
-This will open the default browser and load http://localhost:9292, probably before the server is running, so need to refresh to see page.
+This will open Chrome in incognito mode and load http://localhost:9292, probably before the server is running, so need to refresh to see page.
 
 ## User Stories
 
