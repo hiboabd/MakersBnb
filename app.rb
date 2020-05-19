@@ -1,10 +1,10 @@
 require 'sinatra/base'
 
-class User < Sinatra::Base
+class Makersbnb < Sinatra::Base
 
   get '/' do
-    'hello!'
-  end 
-  
+    erb(:index)
+  end
+
   run! if app_file == $0
 end
