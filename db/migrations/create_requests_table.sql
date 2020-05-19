@@ -1,0 +1,1 @@
+CREATE TABLE Requests (requestID SERIAL PRIMARY KEY, date DATE, FOREIGN KEY (spaceID) REFERENCES Spaces(spaceID), FOREIGN KEY (userID) REFERENCES Users(userID));
