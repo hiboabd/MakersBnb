@@ -11,20 +11,25 @@ class Makersbnb < Sinatra::Base
     erb(:index)
   end
 
-  get '/user/login' do
+  get '/sessions/new' do
     erb(:log_in)
   end
 
-  post '/user/login' do
+  post '/sessions' do
     user = User.authenticate(email: params['email'], password: params['password'])
     if user
       session[:user] = user
       redirect '/spaces'
     else
        flash[:notice] = 'Please check your email or password.'
-       redirect('/user/login')
+       redirect('/sessions/new')
     end
+  end
 
+  post '/sessions/destroy' do
+    session.clear
+    flash[:notice] = 'You have signed out.'
+    redirect('/')
   end
 
   get '/user/new' do

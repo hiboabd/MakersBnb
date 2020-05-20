@@ -1,3 +1,13 @@
+<% if @user %>
+<form action="/sessions/destroy" method="post">
+  <input type="submit" value="Log out" />
+</form>
+<% else %>
+<form action="/sessions/new" method="get">
+  <input type="submit" value="Sign in" />
+</form>
+<% end %>
+
 <h1> Book one of our amazing spaces </h1>
 
 <% if @user %>
