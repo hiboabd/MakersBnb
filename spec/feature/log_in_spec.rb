@@ -10,5 +10,6 @@ feature 'Log in' do
     fill_in 'Password', with: 'Password123'
     click_button 'Log in'
     expect(page).to have_content('Book one of our amazing spaces')
+    expect(page).to have_content('Welcome, John')
   end
 end
