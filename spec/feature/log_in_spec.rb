@@ -6,8 +6,8 @@ feature 'Log in' do
   end
   scenario 'user logs in' do
     visit('/user/login')
-    fill_in 'Email', with: 'Johnsmith@example.com'
-    fill_in 'Password', with: 'Password123'
+    fill_in 'Email', with: 'john.doe@example.com'
+    fill_in 'Password', with: '12345'
     click_button 'Log in'
     expect(page).to have_content('Book one of our amazing spaces')
     expect(page).to have_content('Welcome, John')
