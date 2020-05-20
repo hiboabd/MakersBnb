@@ -14,6 +14,12 @@ REQUESTID = 1
 BOOKINGID = 1
 AVAILABILITIYID = 1
 
+OWNER_ID = 2
+OWNER_F_NAME = 'Cath'
+OWNER_L_NAME = 'Wicks'
+OWNER_EMAIL = 'cath.wicks@example.com'
+OWNER_PASSWORD = '12345'
+
 def empty_tables
   con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres'#, :password => 'Pg5429671'
   rs = con.exec "TRUNCATE TABLE Spaces RESTART IDENTITY CASCADE;"
@@ -30,4 +36,12 @@ def fill_tables
   rs = con.exec "INSERT INTO Requests (date, spaceID, userID) VALUES ('#{DATE}', '#{SPACEID}', '#{USERID}');"
   rs = con.exec "INSERT INTO Bookings (date, spaceID, userID) VALUES ('#{DATE}', '#{SPACEID}', '#{USERID}');"
   rs = con.exec "INSERT INTO Availabilities (date, spaceID) VALUES ('#{DATE}', '#{SPACEID}');"
+end
+
+def fill_bookings_table
+  con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres'#, :password => 'Pg5429671'
+  rs = con.exec "INSERT INTO Users (first_name, last_name, email, password) VALUES ('#{FIRST_NAME}', '#{LAST_NAME}', '#{EMAIL}', '#{PASSWORD}');"
+  rs = con.exec "INSERT INTO Users (first_name, last_name, email, password) VALUES ('#{OWNER_F_NAME}', '#{OWNER_L_NAME}', '#{OWNER_EMAIL}', '#{OWNER_PASSWORD}');"
+  rs = con.exec "INSERT INTO Spaces (name, description, price, date, userID) VALUES ('#{NAME}', '#{DESCRIPTION}', '#{PRICE}', '#{DATE}', '#{OWNER_ID}');"
+  # rs = con.exec "INSERT INTO Bookings (date, spaceID, userID) VALUES ('#{DATE}', '#{SPACEID}', '#{USERID}');"
 end
