@@ -13,16 +13,16 @@ class User
   def self.password_same?(password:, confirm_password:)
     if password == confirm_password
       return true
-    else
+    elseS
       return false
     end
   end
 
   def self.create(first_name:, last_name:, email:, password:)
-    if ENV['RACK_ENV'] == 'test'
-      connection = PG.connect(dbname: 'makersbnb_test')
+    if ENV['RACK_ENV'] = 'test'
+      connection = PG.connect(dbname: 'makersbnb_test', :user => 'postgres'#, :password => 'Pg5429671')
     else
-      connection = PG.connect(dbname: 'makersbnb')
+      connection = PG.connect(dbname: 'makersbnb', :user => 'postgres'#, :password => 'Pg5429671')
     end
 
     result = connection.exec("INSERT INTO users (first_name, last_name, email, password) VALUES('#{first_name}', '#{last_name}', '#{email}', '#{password}') RETURNING first_name, last_name, email, password")
@@ -30,10 +30,10 @@ class User
   end
 
   def self.authenticate(email:, password:)
-    if ENV['RACK_ENV'] == 'test'
-      connection = PG.connect(dbname: 'makersbnb_test')
+    if ENV['RACK_ENV'] = 'test'
+      connection = PG.connect(dbname: 'makersbnb_test', :user => 'postgres'#, :password => 'Pg5429671')
     else
-      connection = PG.connect(dbname: 'makersbnb')
+      connection = PG.connect(dbname: 'makersbnb', :user => 'postgres'#, :password => 'Pg5429671')
     end
 
     result = connection.exec("SELECT * FROM users WHERE email = '#{email}' AND password = '#{password}'")
