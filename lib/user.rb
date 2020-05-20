@@ -18,6 +18,7 @@ class User
     end
 
     connection.exec("INSERT INTO users (first_name, last_name, email, password) VALUES('#{first_name}', '#{last_name}', '#{email}', '#{password}') RETURNING first_name, last_name, email, password")
+<<<<<<< HEAD
   end
 
   def self.authenticate(email:, password:)
@@ -29,5 +30,7 @@ class User
 
     result = connection.exec("SELECT * FROM users WHERE email = '#{email}' AND password = '#{password}'")
     User.new(result[0]['first_name'], result[0]['last_name'], result[0]['email'], result[0]['password'])
+=======
+>>>>>>> 6e2a5c05d2e0c3dbdb1a12fdca4857261d4cb585
   end
 end

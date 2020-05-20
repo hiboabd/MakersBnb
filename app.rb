@@ -22,7 +22,10 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/user/login' do
+<<<<<<< HEAD
     @user = User.authenticate(email: params['email'], password: params['password'])
+=======
+>>>>>>> 6e2a5c05d2e0c3dbdb1a12fdca4857261d4cb585
     redirect '/spaces'
   end
 
