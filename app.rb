@@ -22,8 +22,15 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/user/login' do
-    session[:user] = User.authenticate(email: params['email'], password: params['password'])
-    redirect '/spaces'
+    user = User.authenticate(email: params['email'], password: params['password'])
+    if user
+      session[:user] = user
+      redirect '/spaces'
+    else
+       flash[:notice] = 'Please check your email or password.'
+       redirect('/user/login')
+    end
+
   end
 
   get '/user/new' do

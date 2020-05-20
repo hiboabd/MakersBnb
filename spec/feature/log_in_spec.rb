@@ -12,4 +12,16 @@ feature 'Log in' do
     expect(page).to have_content('Book one of our amazing spaces')
     expect(page).to have_content('Welcome, John')
   end
+
+  scenario 'a user sees an error if they get their email wrong' do
+    User.create(first_name: 'John', last_name: 'Walters', email: 'test@example.com', password: 'password123')
+
+    visit '/user/login'
+    fill_in(:email, with: 'nottherightemail@me.com')
+    fill_in(:password, with: 'password123')
+    click_button('Log in')
+
+    expect(page).not_to have_content 'Welcome, John'
+    expect(page).to have_content 'Please check your email or password.'
+  end
 end
