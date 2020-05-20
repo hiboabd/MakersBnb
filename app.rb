@@ -22,6 +22,7 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/user/login' do
+    session[:user] = User.authenticate(email: params['email'], password: params['password'])
     redirect '/spaces'
   end
 
@@ -30,11 +31,12 @@ class Makersbnb < Sinatra::Base
   end
 
   post '/user/new' do
-    User.create(first_name: params['first_name'], last_name: params['last_name'], email: params['email'], password: params['password'])
+    session[:user] = User.create(first_name: params['first_name'], last_name: params['last_name'], email: params['email'], password: params['password'])
     redirect '/spaces'
   end
 
   get '/spaces' do
+    @user = session[:user]
     erb(:list_spaces)
   end
 
