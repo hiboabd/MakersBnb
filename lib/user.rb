@@ -1,5 +1,5 @@
 class User
   def bye
-    "Bye!"
+    'Bye!'
   end
 end
