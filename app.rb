@@ -11,14 +11,6 @@ class Makersbnb < Sinatra::Base
     erb(:index)
   end
 
-  post '/' do
-    redirect '/user/new'
-  end
-
-  post '/login' do
-    redirect '/user/login'
-  end
-
   get '/user/login' do
     erb(:log_in)
   end
