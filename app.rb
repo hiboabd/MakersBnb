@@ -1,7 +1,9 @@
 require 'sinatra/base'
+require 'sinatra/flash'
 require './lib/user'
 
 class Makersbnb < Sinatra::Base
+  register Sinatra::Flash
 
   enable :sessions
 
