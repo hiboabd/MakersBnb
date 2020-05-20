@@ -19,4 +19,6 @@ class User
 
     connection.exec("INSERT INTO users (first_name, last_name, email, password) VALUES('#{first_name}', '#{last_name}', '#{email}', '#{password}') RETURNING first_name, last_name, email, password")
   end
+
+  
 end

@@ -19,4 +19,11 @@ describe User do
       expect(user['password']).to eq "Password123"
     end
   end
+
+  describe '.authenticate' do
+    it 'checks for user in database' do
+      user = User.create(first_name: "John", last_name: "Smith", email: "JohnSmith@example.com", password: "Password123").first
+      user = User.check(email: "JohnSmith@example.com", password: "Password123")
+    end
+  end
 end
