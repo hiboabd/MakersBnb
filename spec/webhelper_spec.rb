@@ -1,12 +1,12 @@
 require 'pg'
 
-USER_ID = 1
-FIRST_NAME = 'Diana'
-LAST_NAME = 'Ross'
-EMAIL = 'DRoss@example.com'
-PASSWORD = 'AINTnoMOUNTAIN'
+USERID = 1
+FIRST_NAME = 'John'
+LAST_NAME = 'Doe'
+EMAIL = 'john.doe@example.com'
+PASSWORD = '$2a$12$Z3YyX5M1wOPn31Pfq8dA..o4x6oo3eC0ZV4l8PWeBU4t6/Q9gvPJS'
+SPACEID = 1
 
-SPACE_ID = 1
 NAME = 'Home'
 DESCRIPTION = 'No place like home'
 PRICE = 50
@@ -34,7 +34,7 @@ def empty_tables
 end
 
 def fill_tables
-  con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres'#, :password => 'Pg5429671'
+  con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres', password: 'Pg5429671'
   rs = con.exec "INSERT INTO Users (first_name, last_name, email, password) VALUES ('#{FIRST_NAME}', '#{LAST_NAME}', '#{EMAIL}', '#{PASSWORD}');"
   rs = con.exec "INSERT INTO Spaces (name, description, price, date, userID) VALUES ('#{NAME}', '#{DESCRIPTION}', '#{PRICE}', '#{DATE_1}', '#{USER_ID}');"
   rs = con.exec "INSERT INTO Requests (date, spaceID, userID) VALUES ('#{DATE_1}', '#{SPACE_ID}', '#{USER_ID}');"
