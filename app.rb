@@ -1,11 +1,21 @@
 require 'sinatra/base'
 require 'sinatra/flash'
 require './lib/user'
+require './lib/spaces.rb'
+#require 'availability'
+
+# Global for verbose output
+# $verbose = true
+
 
 class Makersbnb < Sinatra::Base
   register Sinatra::Flash
 
   enable :sessions
+
+  before '/' do
+    verbose_output(request) if $verbose
+  end
 
   get '/' do
     erb(:index)
@@ -48,17 +58,20 @@ class Makersbnb < Sinatra::Base
 
   get '/spaces' do
     @user = session[:user]
+    p @user
     erb(:list_spaces)
   end
 
   get '/spaces/new' do
     @user = session[:user]
+    p @user
     erb(:add_space)
   end
 
   post '/confirm_add' do
     @user = session[:user]
-    Spaces.add_space(name: params['name'], description: params['description'], price: params['price'], userID: session[:user.id])
+    p @user
+    Spaces.add_space(name: params['name'], description: params['description'], price: params['price'], userID: @user.id)
 
     flash[:notice] = 'Your listing has been added'
     redirect('/spaces')
@@ -67,5 +80,16 @@ class Makersbnb < Sinatra::Base
 
   # start the server if ruby file executed directly
   run! if app_file == $0
+
+  private
+
+  # :nocov:
+  def verbose_output(request)
+    puts "\n#{request.request_method}: #{request.path}"
+    puts "session: "; p session
+    puts "params: "; p params
+  end
+  # :nocov:
+
 
 end

@@ -29,8 +29,8 @@ class User
 
     encrypted_password = BCrypt::Password.create(password)
 
-    result = connection.exec("INSERT INTO users (first_name, last_name, email, password) VALUES('#{first_name}', '#{last_name}', '#{email}', '#{encrypted_password}') RETURNING userID, first_name, last_name, email, password")
-    User.new(result[0]['userID'], result[0]['first_name'], result[0]['last_name'], result[0]['email'], result[0]['password'])
+    result = connection.exec("INSERT INTO users (first_name, last_name, email, password) VALUES('#{first_name}', '#{last_name}', '#{email}', '#{encrypted_password}') RETURNING userid, first_name, last_name, email, password")
+    User.new(result[0]['userid'], result[0]['first_name'], result[0]['last_name'], result[0]['email'], result[0]['password'])
   end
 
   def self.authenticate(email:, password:)
@@ -43,7 +43,7 @@ class User
     result = connection.exec("SELECT * FROM users WHERE email = '#{email}'")
     return unless result.any?
     return unless BCrypt::Password.new(result[0]['password']) == password
-    User.new(result[0]['userID'], result[0]['first_name'], result[0]['last_name'], result[0]['email'], result[0]['password'])
+    User.new(result[0]['userid'], result[0]['first_name'], result[0]['last_name'], result[0]['email'], result[0]['password'])
   end
 
 
