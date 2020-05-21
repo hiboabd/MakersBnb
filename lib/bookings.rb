@@ -9,16 +9,11 @@ class Bookings
   end
 
   def self.isBookable?(owner_id, space_id, date)
-    # spaceID = space_id
-    # ownerID = owner_id
-    # space_date = date
 
-    # con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres'#, :password => 'Pg5429671'
-    # # the owner gets a request for a particular space
-    # # return from the Request table the request details
-    # space_info = con.exec("SELECT * FROM Requests WHERE spaceID = #{spaceID} AND date = #{space_date}").first
-    # owner_space_id = space_info['ownerID'].to_i
-    false
+    con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres'#, :password => 'Pg5429671'
+    booking_data = con.exec("SELECT * FROM Bookings WHERE spaceID = #{space_id} AND date = '#{date}'").first
+    
+    return !booking_data
 
   end
 
