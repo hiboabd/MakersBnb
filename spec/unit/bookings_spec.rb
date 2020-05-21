@@ -11,9 +11,13 @@ describe Bookings do
         empty_tables()
         expect(Bookings.isBookable?(owner_id, space_id, date)).to eq(true)
       end
-      it 'returns true if Bookigns entry' do
-        # add_booking
-        # expect(Bookings.isBookable?(owner_id, space_id, date)).to eq(true)
+      it 'returns true if Bookings entry' do
+        owner_id = double("owner_id")
+        space_id = 1
+        date = "2001-01-01"
+        empty_tables()
+        fill_bookings_table_with_3_bookings
+        expect(Bookings.isBookable?(owner_id, space_id, date)).to eq(false)
       end
 
 
