@@ -10,8 +10,28 @@ describe Requests do
 
       requests = Requests.all
       expect(requests[0].date).to eq('2001-01-01')
-      expect(requests[0].space_id).to eq(1)
-      expect(requests[0].user_id).to eq(1)
+      expect(requests[0].spaceid).to eq(1)
+      expect(requests[0].userid).to eq(1)
+    end
+
+  end
+
+  describe '#add' do
+
+    it 'adds a request to the requests table' do
+      empty_tables()
+      fill_request_table_with_1_request
+      Requests.add('2001-01-01', 1, 1)
+      Requests.add('2001-01-01', 1, 2)
+
+      requests = Requests.all
+      expect(requests[1].date).to eq('2001-01-01')
+      expect(requests[1].spaceid).to eq(1)
+      expect(requests[1].userid).to eq(1)
+
+      expect(requests[2].date).to eq('2001-01-01')
+      expect(requests[2].spaceid).to eq(1)
+      expect(requests[2].userid).to eq(2)
     end
 
   end
