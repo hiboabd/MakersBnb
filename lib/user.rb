@@ -21,9 +21,9 @@ class User
 
   def self.create(first_name:, last_name:, email:, password:)
     if ENV['RACK_ENV'] == 'test'
-      connection = PG.connect(dbname: 'makersbnb_test')
+      connection = PG.connect(dbname: 'makersbnb_test', :user => 'postgres', password: 'Pg5429671')
     else
-      connection = PG.connect(dbname: 'makersbnb')
+      connection = PG.connect(dbname: 'makersbnb', :user => 'postgres', password: 'Pg5429671')
     end
 
     encrypted_password = BCrypt::Password.create(password)
@@ -34,9 +34,9 @@ class User
 
   def self.authenticate(email:, password:)
     if ENV['RACK_ENV'] == 'test'
-      connection = PG.connect(dbname: 'makersbnb_test')
+      connection = PG.connect(dbname: 'makersbnb_test', :user => 'postgres', password: 'Pg5429671')
     else
-      connection = PG.connect(dbname: 'makersbnb')
+      connection = PG.connect(dbname: 'makersbnb', :user => 'postgres', password: 'Pg5429671')
     end
 
     result = connection.exec("SELECT * FROM users WHERE email = '#{email}'")
