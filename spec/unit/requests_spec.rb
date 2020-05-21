@@ -37,6 +37,58 @@ describe Requests do
 
   end
 
+  # describe '#get_by_id' do
+
+  #   it 'returns id for request' do
+  #     empty_tables()
+  #     fill_request_table_with_1_request
+  #     request = Requests.add('2001-01-04', 1, 2)
+  #     result = Requests.get_by_id(2)
+  #     expect(result).to eq(2)
+  #   end
+
+  # end
+
+
+  #   describe '.get_by_id' do
+  #   it 'gets a specific bookmark' do
+  #     connection = PG.connect(dbname: 'bookmark_manager_test')
+  #     connection.exec("INSERT INTO bookmarks(id, url, title) VALUES (1, 'http://www.makersacademy.com', 'Makers Academy');")
+  #     bookmark = Bookmark.get_by_id(1)
+  #     expect(bookmark.id).to eq(1)
+  #   end
+  # end
+
+
+  describe '#delete' do
+
+    it 'deletes a request' do
+      empty_tables()
+      fill_request_table_with_1_request
+      request_1 = Requests.add('2001-01-04', 1, 1)
+      request_2 = Requests.add('2001-01-04', 1, 2)
+
+      # delete all date AND spaceid don't care about user id
+      Requests.delete('2001-01-04', 1)
+      requests = Requests.all
+      # puts "requests: "; p requests
+      # puts "request_1: "; p request_1
+
+      date_match = false;
+      requests.each do |request| 
+        if request.date == request_1.date && request.spaceid == request_1.spaceid
+          date_match = true
+        end
+        if request.date == request_2.date && request.spaceid == request_2.spaceid
+          date_match = true
+        end
+      end
+
+      expect(date_match).to eq(false)
+    end
+
+  end
+
   describe '#owner_view_requests' do
 
     it 'returns array of requests for a space' do
