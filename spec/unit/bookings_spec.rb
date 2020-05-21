@@ -1,4 +1,5 @@
 require 'bookings'
+require 'requests'
 require './spec/webhelper_spec.rb'
 
 describe Bookings do
@@ -54,6 +55,39 @@ describe Bookings do
       expect(bookings[0].spaceid).to eq(1)
       expect(bookings[0].userid).to eq(2)
 
+    end
+
+  end
+
+  describe '#owner_book' do
+
+    it 'adds a booking and deletes all requests' do
+      empty_tables()
+      fill_request_table_with_1_request
+      request_1 = Requests.add('2001-01-04', 1, 1)
+      request_2 = Requests.add('2001-01-04', 1, 2)
+      
+      # Bookings.add('2001-01-04', 1, 2)
+      Bookings.owner_confirm_booking('2001-01-04', 1, 2)
+      bookings = Bookings.all
+      expect(bookings[0].date).to eq('2001-01-04')
+      expect(bookings[0].spaceid).to eq(1)
+      expect(bookings[0].userid).to eq(2)
+
+      # Requests.delete('2001-01-04', 1)
+      requests = Requests.all
+
+      date_match = false;
+      requests.each do |request| 
+        if request.date == request_1.date && request.spaceid == request_1.spaceid
+          date_match = true
+        end
+        if request.date == request_2.date && request.spaceid == request_2.spaceid
+          date_match = true
+        end
+      end
+
+      expect(date_match).to eq(false)
     end
 
   end

@@ -1,5 +1,5 @@
 require 'pg'
-
+require 'requests'
 
 class Bookings
   attr_reader :date, :spaceid, :userid
@@ -38,7 +38,11 @@ class Bookings
     # INSERT INTO bookings ()
   end
 
-
+  def self.owner_confirm_booking(date, spaceid, userid)
+    Bookings.add(date, spaceid, userid)
+    #TODO: Check successful add before delete requests
+    Requests.delete(date, spaceid)
+  end
   # def self.all(owner_id)
   #   bookings = []
   #   bookings_mock = [ "space id = 2, 2001-01-01","space id = 2, 2001-01-02", "space id = 2, 2001-01-03" ]
