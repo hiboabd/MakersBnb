@@ -2,14 +2,16 @@ require 'bookings'
 
 describe Bookings do
 
-  describe '#isBookable' do
+  describe '#isBookable?' do
     context 'when Owner confirms' do
       it 'a booking is added to Bookings table' do
         owner_id = double("owner_id")
         owner_id = 2
+        space_id = 1
+        date = "2001/01/01"
         empty_tables()
         fill_request_table_with_1_request()
-        expect(Bookings.isBookable(owner_id)).to eq('2001/01/01, 1, 1')
+        expect(Bookings.isBookable?(owner_id, space_id, date)).to eq(false)
       end
     end
   end
