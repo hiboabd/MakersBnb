@@ -26,16 +26,28 @@ feature 'Log in' do
   end
 
   scenario 'a user can sign out' do
-  User.create(first_name: 'John', last_name: 'Walters', email: 'test@example.com', password: 'password123')
+    User.create(first_name: 'John', last_name: 'Walters', email: 'test@example.com', password: 'password123')
 
-  visit '/sessions/new'
-  fill_in(:email, with: 'test@example.com')
-  fill_in(:password, with: 'password123')
-  click_button('Log in')
+    visit '/sessions/new'
+    fill_in(:email, with: 'test@example.com')
+    fill_in(:password, with: 'password123')
+    click_button('Log in')
 
-  click_button('Log out')
+    click_button('Log out')
 
-  expect(page).not_to have_content 'Welcome, John'
-  expect(page).to have_content 'You have signed out.'
+    expect(page).not_to have_content 'Welcome, John'
+    expect(page).to have_content 'You have signed out.'
+  end
+
+  scenario 'a user sees an error if they get their password wrong' do
+    User.create(first_name: 'John', last_name: 'Walters', email: 'test@example.com', password: 'password123')
+
+    visit '/sessions/new'
+    fill_in(:email, with: 'test@example.com')
+    fill_in(:password, with: 'wrongpassword')
+    click_button('Log in')
+
+    expect(page).not_to have_content 'Welcome, test@example.com'
+    expect(page).to have_content 'Please check your email or password.'
   end
 end

@@ -1,5 +1,6 @@
 require 'user'
 require 'pg'
+require 'bcrypt'
 
 describe User do
   let(:user) {User.new("John", 'Doe', 'john.doe@example.com','12345')}
@@ -7,7 +8,6 @@ describe User do
     expect(user.first_name).to eq "John"
     expect(user.last_name).to eq 'Doe'
     expect(user.email).to eq 'john.doe@example.com'
-    expect(user.password).to eq '12345'
   end
 
   describe '.create' do
@@ -18,7 +18,12 @@ describe User do
       expect(user.first_name).to eq "John"
       expect(user.last_name).to eq 'Doe'
       expect(user.email).to eq 'john.doe@example.com'
-      expect(user.password).to eq '12345'
+    end
+
+    it 'hashes the password using BCrypt' do
+      expect(BCrypt::Password).to receive(:create).with('12345')
+
+      User.create(first_name: "John", last_name: 'Doe', email: 'john.doe@example.com', password: '12345')
     end
   end
 
@@ -46,6 +51,12 @@ describe User do
       user = User.create(first_name: "John", last_name: 'Doe', email: 'john.doe@example.com', password: '12345')
 
       expect(User.authenticate(email: 'nottherightemail@me.com', password: 'password123')).to be_nil
+    end
+
+    it 'returns nil given an incorrect password' do
+      user = User.create(first_name: "John", last_name: 'Doe', email: 'john.doe@example.com', password: '12345')
+
+      expect(User.authenticate(email: 'john.doe@example.com', password: 'wrongpassword')).to be_nil
     end
   end
 end
