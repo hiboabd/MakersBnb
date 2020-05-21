@@ -38,7 +38,6 @@ class Requests
 
     requests = Array.new
 
-    # spaceid = 1
     spaceids = Array.new
     space_data = con.exec("SELECT * FROM spaces WHERE userid=#{userid};")
 
@@ -55,12 +54,6 @@ class Requests
       end
     end
 
-    # request_data = con.exec('SELECT * FROM requests;')
-
-    # request_data.each do |row|
-    #   requests.push(Requests.new(row['date'], row['spaceid'].to_i, row['userid'].to_i))
-    # end
-
     requests
   end
 
@@ -69,7 +62,6 @@ class Requests
   #   result = con.exec("SELECT * FROM requests WHERE requestid = #{id}").first
   #   Requests.new(result['date'], result['spaceid'].to_i, result['userid'].to_i)
   # end
-
 
 end
 
