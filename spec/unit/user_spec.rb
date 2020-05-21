@@ -3,7 +3,7 @@ require 'pg'
 require 'bcrypt'
 
 describe User do
-  let(:user) {User.new("John", 'Doe', 'john.doe@example.com','12345')}
+  let(:user) {User.new("1","John", 'Doe', 'john.doe@example.com','12345')}
   it 'has a name, email, password' do
     expect(user.first_name).to eq "John"
     expect(user.last_name).to eq 'Doe'
