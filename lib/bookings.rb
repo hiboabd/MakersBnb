@@ -8,7 +8,7 @@ class Bookings
     @userid = userid
   end
 
-  def self.isBookable?(owner_id, space_id, date)
+  def self.bookable?(date, space_id)
 
     con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres'#, :password => 'Pg5429671'
     booking_data = con.exec("SELECT * FROM Bookings WHERE spaceID = #{space_id} AND date = '#{date}'").first

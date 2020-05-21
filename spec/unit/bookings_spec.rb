@@ -3,23 +3,23 @@ require 'bookings'
 describe Bookings do
 
   describe '#isBookable?' do
+
     context 'when Owner wants to make booking' do
-      it 'returns false if no Bookigns entry' do
-        owner_id = double("owner_id")
+
+      it 'returns true if no Bookigns entry' do
         space_id = 1
         date = "2001-01-01"
         empty_tables()
-        expect(Bookings.isBookable?(owner_id, space_id, date)).to eq(true)
+        expect(Bookings.bookable?(date, space_id)).to eq(true)
       end
-      it 'returns true if Bookings entry' do
-        owner_id = double("owner_id")
+
+      it 'returns false if Bookings entry' do
         space_id = 1
         date = "2001-01-01"
         empty_tables()
         fill_bookings_table_with_3_bookings
-        expect(Bookings.isBookable?(owner_id, space_id, date)).to eq(false)
+        expect(Bookings.bookable?(date, space_id)).to eq(false)
       end
-
 
     end
 
