@@ -1,11 +1,15 @@
 require 'pg'
 
+
 USERID = 1
+USER_ID = USERID
+
 FIRST_NAME = 'John'
 LAST_NAME = 'Doe'
 EMAIL = 'john.doe@example.com'
 PASSWORD = '$2a$12$Z3YyX5M1wOPn31Pfq8dA..o4x6oo3eC0ZV4l8PWeBU4t6/Q9gvPJS'
 SPACEID = 1
+SPACE_ID = SPACEID
 
 NAME = 'Home'
 DESCRIPTION = 'No place like home'
