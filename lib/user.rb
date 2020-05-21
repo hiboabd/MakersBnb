@@ -44,4 +44,6 @@ class User
     return unless BCrypt::Password.new(result[0]['password']) == password
     User.new(result[0]['first_name'], result[0]['last_name'], result[0]['email'], result[0]['password'])
   end
+
+  
 end
