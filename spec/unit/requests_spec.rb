@@ -1,4 +1,5 @@
 require 'requests'
+require './spec/webhelper_spec.rb'
 
 describe Requests do
 
