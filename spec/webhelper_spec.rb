@@ -21,7 +21,7 @@ OWNER_EMAIL = 'cath.wicks@example.com'
 OWNER_PASSWORD = '12345'
 
 def empty_tables
-  con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres'#, :password => 'Pg5429671'
+  con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres', :password => 'Pg5429671'
   rs = con.exec "TRUNCATE TABLE Spaces RESTART IDENTITY CASCADE;"
   rs = con.exec "TRUNCATE TABLE Users RESTART IDENTITY CASCADE;"
   rs = con.exec "TRUNCATE TABLE Requests RESTART IDENTITY CASCADE;"
