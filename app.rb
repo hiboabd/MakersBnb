@@ -51,6 +51,16 @@ class Makersbnb < Sinatra::Base
     erb(:list_spaces)
   end
 
+  get '/spaces/new' do
+    erb(:add_space)
+  end
+
+  post '/confirm_add' do
+    flash[:notice] = 'Your listing has been added'
+    redirect('/spaces')
+  end
+
+
   # start the server if ruby file executed directly
   run! if app_file == $0
 
