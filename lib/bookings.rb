@@ -12,9 +12,9 @@ class Bookings
 
   def self.bookable?(date, space_id)
 
-    con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres'#, :password => 'Pg5429671'
+    con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres', :password => 'Pg5429671'
     booking_data = con.exec("SELECT * FROM Bookings WHERE spaceID = #{space_id} AND date = '#{date}'").first
-    
+
     return !booking_data
 
   end
@@ -22,7 +22,7 @@ class Bookings
   def self.all
     bookings = Array.new
 
-    con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres'#, :password => 'Pg5429671'
+    con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres', :password => 'Pg5429671'
     bookings_data = con.exec('SELECT * FROM bookings;')
 
     bookings_data.each do |row|
@@ -33,7 +33,7 @@ class Bookings
   end
 
   def self.add(date, spaceid, userid)
-    con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres'#, :password => 'Pg5429671'
+    con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres', :password => 'Pg5429671'
     con.exec("INSERT INTO bookings (date, spaceid, userid) VALUES ('#{date}', #{spaceid}, #{userid}) RETURNING bookingid, date, spaceid, userid")
     # INSERT INTO bookings ()
   end

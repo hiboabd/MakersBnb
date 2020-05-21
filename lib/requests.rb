@@ -11,7 +11,7 @@ class Requests
   def self.all
     requests = Array.new
 
-    con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres'#, :password => 'Pg5429671'
+    con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres', :password => 'Pg5429671'
     request_data = con.exec('SELECT * FROM requests;')
 
     request_data.each do |row|
@@ -22,19 +22,19 @@ class Requests
   end
 
   def self.add(date, spaceid, userid)
-    con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres'#, :password => 'Pg5429671'
+    con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres', :password => 'Pg5429671'
     result = con.exec("INSERT INTO requests (date, spaceid, userid) VALUES ('#{date}', #{spaceid}, #{userid}) RETURNING requestid, date, spaceid, userid").first
     Requests.new(result['date'], result['spaceid'].to_i, result['userid'].to_i)
   end
 
   def self.delete(date, spaceid)
-    con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres'#, :password => 'Pg5429671'
+    con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres', :password => 'Pg5429671'
     con.exec("DELETE FROM requests WHERE date = '#{date}' AND spaceid = #{spaceid}").first
     # TODO: return something meaningful
   end
 
   def self.owner_view_requests(userid)
-    con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres'#, :password => 'Pg5429671'
+    con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres', :password => 'Pg5429671'
 
     requests = Array.new
 
@@ -64,15 +64,3 @@ class Requests
   # end
 
 end
-
-
-
-
-
-
-
-
-
-
-
-
