@@ -3,6 +3,32 @@
 ## Instructions
 
 * Clone repository
+* Run `bundle install`
+
+## Database setup
+
+### Database and Tables:
+
+```
+psql < database/migrations/01_create_database.sql  
+psql < database/migrations/02_create_users_table.sql  
+psql < database/migrations/03_create_spaces_table.sql  
+psql < database/migrations/04_create_requests_table.sql  
+psql < database/migrations/05_create_bookings_table.sql  
+psql < database/migrations/06_create_availabilities_table.sql
+```
+
+TODO: Create migrate script that combines everything into a single script
+
+### Database User:
+
+```
+psql
+CREATE USER postgres;
+ALTER ROLE postgres WITH SUPERUSER;
+```
+
+TODO: Create script for above and add to everything script
 
 ## Testing
 
