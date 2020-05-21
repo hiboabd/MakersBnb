@@ -33,6 +33,37 @@ class Requests
     # TODO: return something meaningful
   end
 
+  def self.owner_view_requests(userid)
+    con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres'#, :password => 'Pg5429671'
+
+    requests = Array.new
+
+    # spaceid = 1
+    spaceids = Array.new
+    space_data = con.exec("SELECT * FROM spaces WHERE userid=#{userid};")
+
+    space_data.each do |row|
+      spaceids.push(row['spaceid'].to_i)
+    end
+    p spaceids
+
+    spaceids.each do |spaceid|
+      request_data = con.exec("SELECT * FROM requests WHERE spaceid=#{spaceid};")
+
+      request_data.each do |row|
+        requests.push(Requests.new(row['date'], row['spaceid'].to_i, row['userid'].to_i))
+      end
+    end
+
+    # request_data = con.exec('SELECT * FROM requests;')
+
+    # request_data.each do |row|
+    #   requests.push(Requests.new(row['date'], row['spaceid'].to_i, row['userid'].to_i))
+    # end
+
+    requests
+  end
+
   # def self.get_by_id(id)
   #   con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres'#, :password => 'Pg5429671'
   #   result = con.exec("SELECT * FROM requests WHERE requestid = #{id}").first

@@ -57,8 +57,8 @@ def fill_bookings_table_with_3_bookings
   rs = con.exec "INSERT INTO Users (first_name, last_name, email, password) VALUES ('#{OWNER_F_NAME}', '#{OWNER_L_NAME}', '#{OWNER_EMAIL}', '#{OWNER_PASSWORD}');"
 
   rs = con.exec "INSERT INTO Spaces (name, description, price, date, userID) VALUES ('#{NAME}', '#{DESCRIPTION}', '#{PRICE}', '#{DATE_1}', '#{OWNER_ID}');"
-  rs = con.exec "INSERT INTO Spaces (name, description, price, date, userID) VALUES ('#{NAME}', '#{DESCRIPTION}', '#{PRICE}', '#{DATE_2}', '#{OWNER_ID}');"
-  rs = con.exec "INSERT INTO Spaces (name, description, price, date, userID) VALUES ('#{NAME}', '#{DESCRIPTION}', '#{PRICE}', '#{DATE_3}', '#{OWNER_ID}');"
+  rs = con.exec "INSERT INTO Spaces (name, description, price, date, userID) VALUES ('#{NAME}', '#{DESCRIPTION}', '#{PRICE}', '#{DATE_2}', '#{USER_ID}');"
+  rs = con.exec "INSERT INTO Spaces (name, description, price, date, userID) VALUES ('#{NAME}', '#{DESCRIPTION}', '#{PRICE}', '#{DATE_3}', '#{USER_ID}');"
 
   rs = con.exec "INSERT INTO Availabilities (date, spaceID) VALUES ('#{DATE_1}', '#{SPACE_ID}');"
   rs = con.exec "INSERT INTO Availabilities (date, spaceID) VALUES ('#{DATE_2}', '#{SPACE_ID}');"

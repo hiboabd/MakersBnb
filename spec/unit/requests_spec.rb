@@ -92,12 +92,27 @@ describe Requests do
   describe '#owner_view_requests' do
 
     it 'returns array of requests for a space' do
+      empty_tables()
+      fill_bookings_table_with_3_bookings
+      request_1 = Requests.add('2001-01-04', 2, 1)
+      spaceid_want = 1
+
+      # requests = Requests.owner_view_requests(1)
+      requests = Requests.owner_view_requests(2)
+      # requests = Requests.all
+      requests.each do |request| 
+        expect(request.spaceid).to eq(spaceid_want)
+      end
+      # expect(requests[0].date).to eq('2001-01-01')
+      # expect(requests[0].spaceid).to eq(1)
+      # expect(requests[0].userid).to eq(1)
     #   empty_tables()
     #   fill_request_table_with_1_request
     #   # [[ '2001-01-01', 1, 1], [...]]
 
     #   requests = Array.new
     #   request = Hash.new
+
 
 
     #   # expect(Requests.owner_view_requests(space_id)).to eq
