@@ -2,6 +2,12 @@
   <%= flash[:notice] %>
 </h3>
 
+<h2>
+  <% if @user %>
+    Welcome, <%= @user.first_name %>
+  <% end %>
+<h2>
+
 <h1> Book one of our amazing spaces </h1>
 
   <% if @user %>
@@ -12,10 +18,6 @@
     <form action="/sessions/new" method="get">
       <input type="submit" value="Sign in" />
     </form>
-  <% end %>
-
-  <% if @user %>
-    Welcome, <%= @user.first_name %>
   <% end %>
 
 <style>
@@ -30,15 +32,26 @@
   }
 
   h1 {
-    padding: 110px 10px 10px 10px;
+    margin: 50px 10px 10px 50px;
+    padding: 40px 10px 10px 10px;
     font-family: Arial;
     color: white;
     font-size: 3em;
   }
 
+  h2 {
+    text-align: center;
+    margin: 10px 10px 10px 50px;
+    padding: 10px 10px;
+    font-family: Arial;
+    color: white;
+    font-weight: lighter;
+    font-size: 2em;
+  }
+
   input[type=submit] {
    width: 200 px;
-   margin: 10px 10px 10px 50px;
+   margin: 10px 10px 10px 30px;
    box-sizing: border-box;
    border: 2px solid #ccc;
    border-radius: 4px;
