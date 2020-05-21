@@ -36,9 +36,14 @@ class Makersbnb < Sinatra::Base
     erb(:sign_up)
   end
 
-  post '/user/new' do
-    session[:user] = User.create(first_name: params['first_name'], last_name: params['last_name'], email: params['email'], password: params['password'])
-    redirect '/spaces'
+  post '/user' do
+    if User.password_same?(password: params['password'], confirm_password: params['confirm_password'])
+      session[:user] = User.create(first_name: params['first_name'], last_name: params['last_name'], email: params['email'], password: params['password'])
+      redirect '/spaces'
+    else
+       flash[:notice] = 'Please ensure your passwords match.'
+       redirect('/user/new')
+    end
   end
 
   get '/spaces' do
