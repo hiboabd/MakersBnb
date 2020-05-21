@@ -26,7 +26,7 @@ end
 def fill_tables
   con = PG.connect :dbname => 'makersbnb_test', :user => 'postgres', password: 'Pg5429671'
   rs = con.exec "INSERT INTO Users (first_name, last_name, email, password) VALUES ('#{FIRST_NAME}', '#{LAST_NAME}', '#{EMAIL}', '#{PASSWORD}');"
-  rs = con.exec "INSERT INTO Spaces (name, description, price, date, userID) VALUES ('#{NAME}', '#{DESCRIPTION}', '#{PRICE}', '#{DATE}', '#{USERID}');"
+  rs = con.exec "INSERT INTO Spaces (name, description, price, userID) VALUES ('#{NAME}', '#{DESCRIPTION}', '#{PRICE}', '#{USERID}');"
   rs = con.exec "INSERT INTO Requests (date, spaceID, userID) VALUES ('#{DATE}', '#{SPACEID}', '#{USERID}');"
   rs = con.exec "INSERT INTO Bookings (date, spaceID, userID) VALUES ('#{DATE}', '#{SPACEID}', '#{USERID}');"
   rs = con.exec "INSERT INTO Availabilities (date, spaceID) VALUES ('#{DATE}', '#{SPACEID}');"
