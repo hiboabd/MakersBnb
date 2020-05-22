@@ -5,7 +5,7 @@ require './lib/spaces.rb'
 #require 'availability'
 
 # Global for verbose output
-# $verbose = true
+ $verbose = true
 
 
 class Makersbnb < Sinatra::Base

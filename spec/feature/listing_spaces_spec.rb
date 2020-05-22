@@ -9,11 +9,8 @@ feature 'Listing spaces' do
     click_button 'Log in'
     fill_in 'email', with: 'john.doe@example.com'
     fill_in 'password', with: '12345'
-    visit('/spaces')
+    click_button 'Log in'
     click_button 'List your own space'
-    expect(page).to have_content('Book one of our amazing spaces')
-    expect(page).to have_content('Welcome, John')
-    visit ('/spaces/new')
     fill_in 'name', with: 'Home'
     fill_in 'description', with: 'No place like home'
     fill_in 'price', with: '50'
