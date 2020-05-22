@@ -2,7 +2,7 @@ require 'sinatra/base'
 require 'sinatra/flash'
 require './lib/user'
 require './lib/spaces.rb'
-#require 'availability'
+require './lib/availability.rb'
 
 # Global for verbose output
 # $verbose = true
@@ -69,13 +69,33 @@ class Makersbnb < Sinatra::Base
     erb(:add_space)
   end
 
+  get '/spaces/:id' do
+    @user = session[:user]
+    @spaces = Spaces.all
+    @availability = Availability.retrieve_availability(params[:id].to_i)
+    p @availability
+
+    @spaces.each do |space|
+      if space.id == params[:id].to_i
+        @space = space
+      end
+    end
+    erb(:view_space)
+  end
+
   post '/confirm_add' do
     @user = session[:user]
     # p @user
-    Spaces.add_space(params['name'], params['description'], params['price'], @user.id)
+    space = Spaces.add_space(params['name'], params['description'], params['price'], @user.id)
+    Availability.add(start_date: params['start_date'], end_date: params['end_date'], spaceID: space.id)
 
     flash[:notice] = 'Your listing has been added'
     redirect('/spaces')
+  end
+
+  get '/confirm' do
+    @user = session[:user]
+    erb(:confirm)
   end
 
 

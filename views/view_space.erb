@@ -11,11 +11,11 @@
 </h3>
 
 
-<h2>
+<h3>
   <% if @user %>
     Welcome, <%= @user.first_name %>
   <% end %>
-</h2>
+</h3>
 
 <% if @user %>
 <form action="/sessions/destroy" method="post">
@@ -27,25 +27,24 @@
 </form>
 <% end %>
 
-<h1> Book one of our amazing spaces </h1>
 
-<br>
 
-<h4>
-  <% if @user %>
-    <form action="/spaces/new" method="get">
-      <input type="submit" value="List your own space" />
-    </form>
-  <% end %>
-</h4>
+<dl>
+  <dt><%= @space.name %></a></dt>
+  
+  <dd> <%= @space.description %></dd>
+  <dd> £ <%= @space.price %> per night</dd>
 
-<% @spaces.each do |spaces| %>
+</dl>
+
+
+
+
   <dl>
 
-    <dt><a href='/spaces/<%= spaces.id %>'><%= spaces.name %></a></dt>
-    
-    <dd> <%= spaces.description %></dd>
-    <dd> £ <%= spaces.price %> per night</dd>
+    <dt>Availability</dt>
+    <% @availability.each do |row| %>
+    <dd><a href='/confirm'><%= row.date %></a></dd>
+    <%end%>
 
   </dl>
-<%end%>
