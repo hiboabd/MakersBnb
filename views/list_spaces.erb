@@ -41,9 +41,10 @@
 
 <dl>
   <% @spaces.each do |spaces| %>
+  <br>
   <dt><%= spaces.name %></dt>
-  <dd>- <%= spaces.description %></dd>
-  <dd>- £ <%= spaces.price %> per night</dd>
+  <dd><%= spaces.description %></dd>
+  <dd>£ <%= spaces.price %> per night</dd>
   <br>
   <%end%>
 </dl>

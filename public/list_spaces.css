@@ -56,4 +56,27 @@
    /* padding: 12px 20px 12px 40px; */
   }
 
-  
+  dl {
+    background-color: #ffba00;
+    border: 2px solid #ccc;
+    background-position: center;
+    border-radius: 4px;
+  }
+
+  dt {
+    font-family: Arial;
+    color: black;
+    font-size: 1em;
+    font-weight: lighter;
+    display: block;
+    margin-left: 40px;
+  }
+
+  dd {
+    font-family: Arial;
+    color: black;
+    font-size: 1em;
+    font-weight: lighter;
+    display: block;
+    margin-left: 40px;
+  }
