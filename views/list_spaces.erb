@@ -29,6 +29,11 @@
 
 <h1> Book one of our amazing spaces </h1>
 
+<% if @user %>
+Welcome, <%= @user.first_name %>
+<% end %>
+
+
 <br>
 
 <h4>
@@ -41,10 +46,12 @@
 
 <dl>
   <% @spaces.each do |spaces| %>
-  <br>
-  <dt><%= spaces.name %></dt>
-  <dd><%= spaces.description %></dd>
-  <dd>£ <%= spaces.price %> per night</dd>
+
+  <dt><a href='/spaces/<%= spaces.id %>'><%= spaces.name %></a></dt>
+  
+  <dd> <%= spaces.description %></dd>
+  <dd> £ <%= spaces.price %> per night</dd>
+
   <br>
   <%end%>
 </dl>
