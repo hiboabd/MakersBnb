@@ -21,6 +21,8 @@ describe Spaces do
 
   it 'can list spaces' do
     space = Spaces.all
+    p "this is my space"
+    p space.first
     expect(space.length).to eq 3
   end
 end

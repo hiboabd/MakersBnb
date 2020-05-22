@@ -28,10 +28,9 @@ class Spaces
     end
 
     result = connection.exec ('SELECT * FROM Spaces;')
-    result.map do |result|
+    spaces_array = result.map do |result|
       Spaces.new(name: result['name'], description: result['description'], price: result['price'], userID: result['userID'])
     end
+    return spaces_array
   end
-
-
 end
