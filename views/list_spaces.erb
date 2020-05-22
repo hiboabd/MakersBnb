@@ -2,18 +2,72 @@
   <%= flash[:notice] %>
 </h3>
 
-<% if @user %>
-<form action="/sessions/destroy" method="post">
-  <input type="submit" value="Log out" />
-</form>
-<% else %>
-<form action="/sessions/new" method="get">
-  <input type="submit" value="Sign in" />
-</form>
-<% end %>
+<h2>
+  <% if @user %>
+    Welcome, <%= @user.first_name %>
+  <% end %>
+<h2>
 
 <h1> Book one of our amazing spaces </h1>
 
-<% if @user %>
-Welcome, <%= @user.first_name %>
-<% end %>
+  <% if @user %>
+    <form action="/sessions/destroy" method="post">
+      <input type="submit" value="Log out" />
+    </form>
+    <% else %>
+    <form action="/sessions/new" method="get">
+      <input type="submit" value="Sign in" />
+    </form>
+  <% end %>
+
+<style>
+
+  body {
+    background-image: url("https://bit.ly/3bRCi1O");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+  }
+
+  h1 {
+    margin: 50px 10px 10px 50px;
+    padding: 40px 10px 10px 10px;
+    font-family: Arial;
+    color: white;
+    font-size: 3em;
+  }
+
+  h2 {
+    text-align: center;
+    margin: 10px 10px 10px 50px;
+    padding: 10px 10px;
+    font-family: Arial;
+    color: white;
+    font-weight: lighter;
+    font-size: 2em;
+  }
+
+  h3 {
+    text-align: center;
+    margin: 10px 10px 10px 50px;
+    padding: 10px 10px;
+    font-family: Arial;
+    color: white;
+    font-weight: lighter;
+    font-size: 1em;
+  }
+
+  input[type=submit] {
+   width: 200 px;
+   margin: 10px 10px 10px 30px;
+   box-sizing: border-box;
+   border: 2px solid #ccc;
+   border-radius: 4px;
+   font-size: 1em;
+   background-color: #ffba00;
+   /* padding: 12px 20px 12px 40px; */
+  }
+
+</style>
