@@ -80,3 +80,14 @@
     display: block;
     margin-left: 10px;
   }
+
+  a:link {
+    color: #DC5C05;
+    /* background-color: transparent;
+    text-decoration: none; */
+  }
+  a:visited {
+    color: #DC5C05;
+    /* background-color: transparent;
+    text-decoration: none; */
+  }
