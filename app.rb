@@ -5,7 +5,7 @@ require './lib/spaces.rb'
 #require 'availability'
 
 # Global for verbose output
- $verbose = true
+# $verbose = true
 
 
 class Makersbnb < Sinatra::Base
@@ -72,7 +72,7 @@ class Makersbnb < Sinatra::Base
   post '/confirm_add' do
     @user = session[:user]
     p @user
-    Spaces.add_space(name: params['name'], description: params['description'], price: params['price'], userID: @user.id)
+    Spaces.add_space(params['name'], params['description'], params['price'], @user.id)
 
     flash[:notice] = 'Your listing has been added'
     redirect('/spaces')
