@@ -44,14 +44,10 @@ Welcome, <%= @user.first_name %>
   <% end %>
 </h4>
 
-<dl>
   <% @spaces.each do |spaces| %>
-
-  <dt><a href='/spaces/<%= spaces.id %>'><%= spaces.name %></a></dt>
-  
-  <dd> <%= spaces.description %></dd>
-  <dd> £ <%= spaces.price %> per night</dd>
-
-  <br>
+    <dl>
+      <dt><a href='/spaces/<%= spaces.id %>'><%= spaces.name %></a></dt>
+      <dd> <%= spaces.description %></dd>
+      <dd> £ <%= spaces.price %> per night</dd>
+    </dl>
   <%end%>
-</dl>
