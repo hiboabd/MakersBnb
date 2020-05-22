@@ -18,7 +18,7 @@ class Spaces
     end
 
     result = connection.exec("INSERT INTO Spaces (name, description, price, userid) VALUES ('#{name}', '#{description}', #{price}, #{userid}) RETURNING spaceid, name, description, price, date, userid").first
-    p result
+    # p result
     # ret = Spaces.new(id: result['spaceid'], name: result['name'], description: result['description'], price: result['price'], userid: result['userid'])
     ret = Spaces.new(result['spaceid'].to_i, result['name'], result['description'], result['price'].to_i, result['userid'].to_i)
     # p ret

@@ -59,19 +59,19 @@ class Makersbnb < Sinatra::Base
   get '/spaces' do
     @user = session[:user]
     @spaces = Spaces.all
-    p @user
+    # p @user
     erb(:list_spaces)
   end
 
   get '/spaces/new' do
     @user = session[:user]
-    p @user
+    # p @user
     erb(:add_space)
   end
 
   post '/confirm_add' do
     @user = session[:user]
-    p @user
+    # p @user
     Spaces.add_space(params['name'], params['description'], params['price'], @user.id)
 
     flash[:notice] = 'Your listing has been added'
