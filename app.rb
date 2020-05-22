@@ -58,6 +58,7 @@ class Makersbnb < Sinatra::Base
 
   get '/spaces' do
     @user = session[:user]
+    @spaces = Spaces.all
     p @user
     erb(:list_spaces)
   end

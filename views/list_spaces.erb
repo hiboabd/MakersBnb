@@ -8,7 +8,7 @@
 </form>
 <% else %>
 <form action="/sessions/new" method="get">
-  <input type="submit" value="Sign in" />
+  <input type="submit" value="Log in" />
 </form>
 <% end %>
 
@@ -17,3 +17,20 @@
 <% if @user %>
 Welcome, <%= @user.first_name %>
 <% end %>
+
+<br>
+
+<% if @user %>
+<form action="/spaces/new" method="get">
+  <input type="submit" value="List your own space" />
+</form>
+<% end %>
+
+<dl>
+  <% @spaces.each do |spaces| %>
+  <dt><%= spaces.name %></dt>
+  <dd>- <%= spaces.description %></dd>
+  <dd>- £ <%= spaces.price %> per night</dd>
+  <br>
+  <%end%>
+</dl>
