@@ -2,7 +2,7 @@ class Spaces
 
   attr_reader :name, :description, :price, :userID
 
-  def initialize(name:, description:, price:, userID:)
+  def initialize(name, description, price, userID)
     @name = name
     @description = description
     @price = price
@@ -17,7 +17,7 @@ class Spaces
     end
 
     result = connection.exec("INSERT INTO Spaces (name, description, price, userID) VALUES ('#{name}', '#{description}', '#{price}', '#{userID}') RETURNING name, description, price, date, userID")
-
+    Spaces.new(result[0]['name'], result[0]['description'], result[0]['price'], result[0]['userID'])
   end
 
   def self.all
@@ -29,7 +29,7 @@ class Spaces
 
     result = connection.exec ('SELECT * FROM Spaces;')
     spaces_array = result.map do |result|
-      Spaces.new(name: result['name'], description: result['description'], price: result['price'], userID: result['userID'])
+      Spaces.new(result['name'], result['description'], result['price'], result['userID'])
     end
     return spaces_array
   end
