@@ -19,8 +19,6 @@ describe Spaces do
 
   it 'returns all spaces as array' do
     space = Spaces.all
-    p "this is my space"
-    p space.first
     expect(space.length).to eq 3
   end
 end
