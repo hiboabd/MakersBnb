@@ -5,20 +5,22 @@
     <!-- <link href="style.css" rel="stylesheet"> -->
 </head>
 
-<body>
-    <h3>
-      <%= flash[:notice] %>
-    </h3>
+<main>
+  <body>
+      <h3>
+        <%= flash[:notice] %>
+      </h3>
 
-    <h1> Makersbnb </h1>
-    <h2> A sweet escape. Even sweeter prices. </h2>
-    <form action="/user/new" method="get">
-      <input type="submit" value="Sign up">
-    </form>
-    <form action="/sessions/new" method="get">
-      <input type="submit" value="Log in">
-    </form>
-</body>
+      <h1> Makersbnb </h1>
+      <h2> A sweet escape. Even sweeter prices. </h2>
+      <form action="/user/new" method="get">
+        <input type="submit" value="Sign up">
+      </form>
+      <form action="/sessions/new" method="get">
+        <input type="submit" value="Log in">
+      </form>
+  </body>
+</main>
 
 <style>
   body {
@@ -28,6 +30,11 @@
     background-repeat: no-repeat;
     background-size: cover;
     text-align: center;
+  }
+
+  main {
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom, rgba(0,0,0, 0.25), rgba(0,0,0,0.3));
   }
 
   h1 {
