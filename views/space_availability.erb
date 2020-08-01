@@ -1,34 +1,28 @@
 <main>
-<h3>
-  <%= flash[:notice] %>
-</h3>
-
 <% if @user %>
   <h1> Welcome, <%= @user.first_name %> </h1>
   <form action="/sessions/destroy" method="post">
     <input type="submit" value="Log out" />
   </form>
 
-  <form action="/spaces/new" method="get">
-    <input type="submit" value="List your own space" />
+  <form action="/spaces" method="get">
+    <input type="submit" value="View spaces" />
   </form>
-<% else %>
-<form action="/sessions/new" method="get">
-  <input type="submit" value="Log in" />
-</form>
 <% end %>
 
-<h1> Book one of our amazing spaces </h1>
+<h1> Availability for <%= @space.name %> </h1>
+<h2> Description: <%= @space.description %> </h2>
+<h2> Price: <%= @space.price %> </h2>
 
 <dl>
-  <% @spaces.each do |space| %>
-  <div class="space-container">
-  <dt><h3><%= space.name %></h3></dt>
-  <dd><h3>- <%= space.description %></h3></dd>
-  <dd><h3>- £ <%= space.price %> per night</h3></dd>
-  <form action="/spaces/<%= space.id %>/show" method="get">
-    <input type="submit" value="Check availability" />
-  </form>
+  <% @availability.each do |availability| %>
+  <div class="availability-container">
+  <ul>
+    <li><h3><%= availability.date %></h3></li>
+    <form action="/spaces/book" method="get">
+      <input type="submit" value="Book space" />
+    </form>
+  </ul>
   </div>
   <br>
   <%end%>
@@ -76,7 +70,7 @@
     font-size: 1em;
   }
 
-  .space-container {
+  .availability-container {
     background: linear-gradient(to bottom, rgba(0,0,0, 0.25), rgba(0,0,0,0.75));
   }
 
