@@ -95,7 +95,7 @@ class Makersbnb < Sinatra::Base
     @space = Spaces.find(params[:id].to_i)
     @availability = Availability.retrieve_availability(params[:id].to_i)
     erb(:space_availability)
-  end 
+  end
 
   get '/confirm' do
     @user = session[:user]
