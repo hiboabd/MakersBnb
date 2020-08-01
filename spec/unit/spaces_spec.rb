@@ -1,4 +1,5 @@
 require 'spaces'
+require './spec/webhelper_spec.rb'
 
 describe Spaces do
   it 'Lets me add a space' do

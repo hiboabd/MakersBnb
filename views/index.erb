@@ -2,8 +2,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link href="style.css" rel="stylesheet"> -->
+    <link href="<%= url('/index.css') %>" rel="stylesheet" />
 </head>
+
 
 <main>
   <body>
@@ -78,3 +79,20 @@
   }
 
 </style>
+
+<body>
+    <h3> <%= flash[:notice] %> </h3>
+
+    <h1> Makersbnb </h1>
+
+    <h2> A sweet escape. Even sweeter prices. </h2>
+
+    <form action="/user/new" method="get">
+      <input type="submit" value="Sign up">
+    </form>
+
+    <form action="/sessions/new" method="get">
+      <input type="submit" value="Log in">
+    </form>
+
+</body>

@@ -1,0 +1,50 @@
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="<%= url('/list_spaces.css') %>" rel="stylesheet" />
+</head>
+
+
+<h3>
+  <%= flash[:notice] %>
+</h3>
+
+
+<h3>
+  <% if @user %>
+    Welcome, <%= @user.first_name %>
+  <% end %>
+</h3>
+
+<% if @user %>
+<form action="/sessions/destroy" method="post">
+  <input type="submit" value="Log out" />
+</form>
+<% else %>
+<form action="/sessions/new" method="get">
+  <input type="submit" value="Log in" />
+</form>
+<% end %>
+
+
+
+<dl>
+  <dt><%= @space.name %></a></dt>
+  
+  <dd> <%= @space.description %></dd>
+  <dd> £ <%= @space.price %> per night</dd>
+
+</dl>
+
+
+
+
+  <dl>
+
+    <dt>Availability</dt>
+    <% @availability.each do |row| %>
+    <dd><a href='/confirm'><%= row.date %></a></dd>
+    <%end%>
+
+  </dl>

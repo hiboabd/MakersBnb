@@ -1,5 +1,10 @@
 # Makersbnb
 
+## Preview
+<img width="320" alt="makersbnb-welcome" src="https://user-images.githubusercontent.com/28805811/83120379-e3902700-a0c8-11ea-86a9-c15d959142f8.png">
+
+<img width="320" alt="MakersBnB-signup" src="https://user-images.githubusercontent.com/28805811/83120467-04587c80-a0c9-11ea-9768-45350996c04e.png">
+
 ## Instructions
 
 * Clone repository

@@ -1,5 +1,13 @@
 require 'date'
+
 class Availability
+  attr_reader :id, :date, :spaceid
+
+  def initialize(id, date, spaceid)
+    @id = id
+    @date = date
+    @spaceid = spaceid
+  end
 
   attr_reader :id, :date, :spaceid
 
@@ -15,9 +23,9 @@ class Availability
     else
       connection = PG.connect(dbname: 'makersbnb', :user => 'postgres', password: 'Pg5429671')
     end
-
     Date.parse(start_date).upto(Date.parse(end_date)) do |date|
-      result = connection.exec("INSERT INTO Availabilities (date, spaceID) VALUES ('#{date}', '#{spaceID}') RETURNING date;")
+      result = connection.exec("INSERT INTO Availabilities (date, spaceid) VALUES ('#{date}', #{spaceID}) RETURNING date;")
+      p result
     end
   end
 
@@ -48,5 +56,5 @@ class Availability
     end
     return availabilities_array
   end
-
+  
 end

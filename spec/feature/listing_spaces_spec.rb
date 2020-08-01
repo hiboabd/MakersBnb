@@ -1,7 +1,12 @@
 feature 'Listing spaces' do
   scenario 'User can see all spaces available' do
+    empty_tables
+    fill_tables
     visit('/spaces')
     expect(page).to have_content('Book one of our amazing spaces')
+    expect(page).to have_link 'Home', href: "/spaces/1"
+    # click_link('Home')
+    # List all bookable spaces
   end
 
   scenario 'User can see all spaces available' do

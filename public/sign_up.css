@@ -1,0 +1,39 @@
+body {
+    /*background-image: url("https://bit.ly/3bRCi1O");*/
+    /* background-image: url("https://www.soyacincau.com/wp-content/uploads/2020/04/200419-airbnb-backgrounds-download-1.jpg"); */
+    background-image: url("/makersbnb-background.jpg");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+  }
+
+  h1 {
+    padding: 60px 30px;
+    font-family: Arial;
+    font-weight: lighter;
+    color: white;
+    font-size: 2.5em;
+  }
+
+  input[type=text] {
+    width: 15%;
+    padding: 5px 5px;
+    margin: 8px 8px;
+    font-size: 1em;
+    box-sizing: border-box;
+    border-radius: 4px;
+  }
+
+  input[type=submit] {
+   width: 200 px;
+   /* margin: 8px 50px; */
+   /* margin: 10px 10px 10px 50px; */
+   box-sizing: border-box;
+   border: 2px solid #ccc;
+   border-radius: 4px;
+   font-size: 1em;
+   background-color: #ffba00;
+   /* padding: 12px 20px 12px 40px; */
+  }

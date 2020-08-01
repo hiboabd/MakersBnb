@@ -7,7 +7,7 @@ class Spaces
     @name = name
     @description = description
     @price = price
-    @userID = userID
+    @userid = userid
   end
 
   def self.add_space(name:, description:, price:, userID:)
@@ -16,7 +16,7 @@ class Spaces
     else
       connection = PG.connect(dbname: 'makersbnb', :user => 'postgres', password: 'Pg5429671')
     end
-
+    
     result = connection.exec("INSERT INTO Spaces (name, description, price, userID) VALUES ('#{name}', '#{description}', '#{price}', '#{userID}') RETURNING spaceid, name, description, price, date, userID")
     Spaces.new(result[0]['spaceid'], result[0]['name'], result[0]['description'], result[0]['price'], result[0]['userID'])
   end
