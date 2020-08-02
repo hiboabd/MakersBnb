@@ -5,6 +5,39 @@
 
 <img width="320" alt="MakersBnB-signup" src="https://user-images.githubusercontent.com/28805811/83120467-04587c80-a0c9-11ea-9768-45350996c04e.png">
 
+## Description
+This is a simplified clone of Airbnb built as part of the Makers Academy week 6 group project week.
+
+### Features
+
+- Users can sign up to MakersBnB
+- Users can log in
+- Users can view spaces available with descriptions and price information
+- If logged in, users can list their own space(s)
+- Users can view the availability of a space
+
+#### Functionality to add
+
+Unfortunately, due to time constraints, the following features could not be implemented fully:
+
+- Users can book a space
+- Users can view booking requests for their spaces
+- Users can approve/decline booking requests for their spaces
+- Users can edit/delete their spaces
+
+## Tech Stack
+- [Sinatra](http://sinatrarb.com) a web framework for apps written in Ruby.
+- [Ruby](https://www.ruby-lang.org/en/) our programming language.
+- [PostgreSQL](https://www.postgresql.org) an open source relational database.
+- [PG](https://rubygems.org/gems/pg/versions/0.18.4) a Ruby interface for the PostgreSQL relational database mapping system.
+- [Rack](https://github.com/rack/rack) a modular Ruby webserver interface.
+- [Rake](https://github.com/ruby/rake) a centralised task runner.
+- [Handlebars](https://handlebarsjs.com/) to render view templates.
+- [Rspec](https://github.com/rspec/rspec) for testing.
+- [Capybara](https://github.com/teamcapybara/capybara) for end-to-end testing.
+- [Bcrypt](https://www.npmjs.com/package/bcrypt) for password encryption.
+- [Rubocop](https://github.com/rubocop-hq/rubocop) for linting.
+
 ## Instructions
 
 * Clone repository
@@ -46,6 +79,8 @@ To test in browser, run script:
 `./test/web.test`
 
 This will open Chrome in incognito mode and load http://localhost:9292, probably before the server is running, so need to refresh to see page.
+
+## Planning
 
 ## User Stories
 
@@ -109,3 +144,69 @@ As a registered user
 Until i have confirmed the booking
 I would like other users to be able to book my space
 ```
+
+## Database structuring
+
+User table
+| ID | First name | Last name  | Email | Password |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+
+Space table
+| ID | User id (foreign key) | Name  | Description | Price |
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+| Content Cell  | Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+
+Availability table
+| ID | Space id (foreign key) | Date  |
+| ------------- | ------------- | ------------- |
+| Content Cell  | Content Cell  | Content Cell  |
+
+Requests table
+| ID | User id (foreign key) | Space id (foreign key)  |
+| ------------- | ------------- | ------------- |
+| Content Cell  | Content Cell  | Content Cell  |
+
+Bookings table
+| ID | User id (foreign key)| Space id (foreign key) | Date |
+| ------------- | ------------- | ------------- | ------------- |
+| Content Cell  | Content Cell  | Content Cell  | Content Cell  |
+
+
+## Class Responsibility Collaborator cards
+
+| Class  | Responsibility | Collaborators |
+| ------------- | ------------- | ------------- |
+| Users  | Sign_up(f_name, l_name, email, password)  | Space |
+|   | Log_in(email, password)  |Booking |
+|   | owner_add_space(space) |  |
+|  | user_request_booking(space, date)  |  |
+|   | owner_confirm_booking()  |   |
+|  | owner_deny_booking()  |   |
+
+| Class  | Responsibility | Collaborators |
+| ------------- | ------------- | ------------- |
+| Spaces  | Initialize: name, description, price, date  | |
+|  | add_space(name, description, price, date, userID)  |  |
+
+| Class  | Responsibility | Collaborators |
+| ------------- | ------------- | ------------- |
+| Availability  | owner_add(space, date) |   |
+|  | available?(date)  |   |
+
+
+| Class  | Responsibility | Collaborators |
+| ------------- | ------------- | ------------- |
+| Requests  | all |   |
+|   | add(date, space, user)  |  |
+| | delete(request)  |   |
+|  | user_request(date, space, user) - adds entry to requests table (duplicated by add, public vs private method?)  |   |
+|   | owner_view_requests(space) - returns all requests for space - can use all, but filter by space_id?  |  |
+
+| Class  | Responsibility | Collaborators |
+| ------------- | ------------- | ------------- |
+| Bookings | Initialize:   | Space |
+|  | bookable?(date, space) - if no entry, returns available true  | User |
+|  |all - returns all booking  |  |
+|   | add(date, space, user)  | |
+|  | owner_confirm_booking(date, space, user) - adds entry to bookings table and deletes requests | |
