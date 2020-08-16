@@ -56,5 +56,5 @@ class Availability
     end
     return availabilities_array
   end
-
+  
 end

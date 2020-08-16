@@ -5,19 +5,77 @@
     <link href="<%= url('/index.css') %>" rel="stylesheet" />
 </head>
 
-<body>
-    <h3> <%= flash[:notice] %> </h3>
 
-    <h1> Makersbnb </h1>
+<main>
+  <body>
+      <h3>
+        <%= flash[:notice] %>
+      </h3>
 
-    <h2> A sweet escape. Even sweeter prices. </h2>
+      <h1> Makersbnb </h1>
+      <h2> A sweet escape. Even sweeter prices. </h2>
+      <form action="/user/new" method="get">
+        <input type="submit" value="Sign up">
+      </form>
+      <form action="/sessions/new" method="get">
+        <input type="submit" value="Log in">
+      </form>
+  </body>
+</main>
 
-    <form action="/user/new" method="get">
-      <input type="submit" value="Sign up">
-    </form>
+<style>
+  body {
+    background-image: url("https://bit.ly/3bRCi1O");
+    height: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+  }
 
-    <form action="/sessions/new" method="get">
-      <input type="submit" value="Log in">
-    </form>
+  main {
+    min-height: 100vh;
+    background-image: linear-gradient(to bottom, rgba(0,0,0, 0.25), rgba(0,0,0,0.3));
+  }
 
-</body>
+  h1 {
+    text-align: center;
+    padding: 40px 10px;
+    margin: 10px 10px 10px 50px;
+    font-family: Arial;
+    color: white;
+    font-size: 3em;
+  }
+
+  h2 {
+    text-align: center;
+    margin: 10px 10px 10px 80px;
+    padding: 10px 10px;
+    font-family: Arial;
+    color: white;
+    font-weight: lighter;
+    font-size: 2em;
+  }
+
+  h3 {
+    text-align: center;
+    margin: 10px 10px 10px 50px;
+    padding: 10px 10px;
+    font-family: Arial;
+    color: white;
+    font-weight: lighter;
+    font-size: 1em;
+  }
+
+  input[type=submit] {
+   width: 200 px;
+   margin: 5px 10px 10px 40px;
+   box-sizing: border-box;
+   border: 2px solid #ccc;
+   border-radius: 4px;
+   font-size: 1em;
+   background-color: #ffba00;
+   /* padding: 12px 20px 12px 40px; */
+  }
+
+</style>
