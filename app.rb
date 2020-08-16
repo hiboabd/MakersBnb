@@ -59,13 +59,11 @@ class Makersbnb < Sinatra::Base
   get '/spaces' do
     @user = session[:user]
     @spaces = Spaces.all
-    # p @user
     erb(:list_spaces)
   end
 
   get '/spaces/new' do
     @user = session[:user]
-    # p @user
     erb(:add_space)
   end
 
@@ -85,12 +83,18 @@ class Makersbnb < Sinatra::Base
 
   post '/confirm_add' do
     @user = session[:user]
-    # p @user
-    space = Spaces.add_space(params['name'], params['description'], params['price'], @user.id)
-    Availability.add(start_date: params['start_date'], end_date: params['end_date'], spaceID: space.id)
-
+    space = Spaces.add_space(name: params['name'], description: params['description'], price: params['price'], userID: @user.id)
+    Availability.add(start_date: params['start_date'], end_date: params['end_date'], spaceID: space.id.to_i)
     flash[:notice] = 'Your listing has been added'
     redirect('/spaces')
+  end
+
+
+  get '/spaces/:id/show' do
+    @user = session[:user]
+    @space = Spaces.find(params[:id].to_i)
+    @availability = Availability.retrieve_availability(params[:id].to_i)
+    erb(:space_availability)
   end
 
   get '/confirm' do
