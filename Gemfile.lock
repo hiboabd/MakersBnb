@@ -33,7 +33,7 @@ GEM
     pg (1.2.3-x64-mingw32)
     public_suffix (4.0.5)
     rack (2.2.3)
-    rack-protection (2.0.8.1)
+    rack-protection (2.2.0)
       rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -60,7 +60,7 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
     ruby-progressbar (1.10.1)
-    ruby2_keywords (0.0.2)
+    ruby2_keywords (0.0.5)
     rubyzip (2.3.0)
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
@@ -73,10 +73,10 @@ GEM
       simplecov
       terminal-table
     simplecov-html (0.12.2)
-    sinatra (2.0.8.1)
+    sinatra (2.2.0)
       mustermann (~> 1.0)
-      rack (~> 2.0)
-      rack-protection (= 2.0.8.1)
+      rack (~> 2.2)
+      rack-protection (= 2.2.0)
       tilt (~> 2.0)
     sinatra-flash (0.3.0)
       sinatra (>= 1.0.0)
